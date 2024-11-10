@@ -1,24 +1,24 @@
-## Aim:
-This projects aims at the use of open cv,numpy and python to make a bot capabale of identifying and drawing the pattern
-on the ground using a marker attached with it.
+## Aim
+This project aims to use OpenCV, NumPy, and Python to create a bot capable of identifying and drawing patterns on the ground using an attached marker.
 
 ## Why?
-This was made to compete in the MNNIT'S Avishkar tech fest under the robotics club, I was responsible for developing the software 
-required for it.
+This project was developed to compete in the MNNIT's Avishkar Tech Fest under the Robotics Club. I was responsible for developing the software required for it.
 
 ## How can you use it?
+Install Python: Ensure Python is installed on your machine.
 
-Install python then
-You need to install some libraries .
-1. Numpy
-2. Open cv
+Install Required Libraries:
 
+NumPy
 
-use this command:
+OpenCV
+
+Use this command to install the libraries:
+
 pip install numpy opencv-contrib-python
+Fork and Clone the Repository: Fork this repository and clone it to your machine.
 
-Then you need for fork this repo and clone it in your machines and change the file directory of image or anything else where 
-it is required to.
+Update File Directories: Change the file directory of images or any other necessary paths as required.
 
-
-
+## Note:
+If it doesn't work for the photo you choose, the problem is likely with the dictionary. Update that accordingly.
