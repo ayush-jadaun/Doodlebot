@@ -2,31 +2,31 @@
 # Ground Pattern Identification Bot
 
 ## Aim
-This project uses OpenCV, NumPy, and Python to create a bot capable of identifying and drawing patterns on the ground using an attached marker. The primary goal is to facilitate robust pattern recognition and enable dynamic drawing based on detected ground features.
+This project leverages OpenCV, NumPy, and Python to create a bot capable of identifying and drawing patterns on the ground using an attached marker. The primary goal is to deliver robust pattern recognition and dynamic drawing capabilities for environments requiring real-time processing.
 
 ## Why?
-This project was developed for MNNIT's Avishkar Tech Fest under the Robotics Club. It was designed to meet the challenges of real-time pattern detection and drawing during the competition. I was responsible for developing the software, focusing on leveraging computer vision techniques to accurately identify and respond to marker inputs.
+Developed for MNNIT's Avishkar Tech Fest under the Robotics Club, this project addresses the challenges of real-time pattern detection and marker-based drawing. It supports both live camera feeds and static images, ensuring accurate marker detection and prompt responses during competitive events.
 
 ## Features
-- **Real-time Pattern Identification:** Utilizes OpenCV and NumPy to recognize and identify patterns from live image feeds.
-- **Marker Tracking:** Detects and tracks an attached marker to assist in drawing accurate patterns.
-- **Dynamic Pattern Drawing:** Automatically draws patterns on the ground based on the identified marker placements.
-- **Customizable Dictionary:** Easily update the pattern dictionary within the code to suit different images or marker types.
-- **Optimized Performance:** Designed for real-time processing, ensuring responsiveness during live operations.
+- **Real-time Pattern Identification:** Uses advanced computer vision techniques to process live image feeds and detect patterns.
+- **Marker Tracking:** Accurately tracks an attached marker to determine the pattern's position.
+- **Dynamic Pattern Drawing:** Automatically draws ground patterns based on detected marker positions.
+- **Customizable Dictionary:** Easily update the internal dictionary to suit different marker types and images.
+- **Optimized Performance:** Ensures minimal latency through efficient coding practices.
 
 ## Technologies Used
-- **Python 3.x:** The core programming language used.
-- **OpenCV:** For image processing and computer vision tasks.
-- **NumPy:** For efficient numerical computations and array processing.
+- **Python 3.x:** Core programming language.
+- **OpenCV (opencv-contrib-python):** For image processing and computer vision operations.
+- **NumPy:** For efficient numerical and array operations.
 
 ## Installation
 
 ### Prerequisites
-- Python 3.x must be installed on your machine.
-- A virtual environment is recommended for dependency management.
+- Ensure Python 3.x is installed.
+- It is recommended to use a virtual environment for dependency management.
 
 ### Install Required Libraries
-Use the following command to install the necessary libraries:
+Install the necessary libraries using pip:
 
 ```bash
 pip install numpy opencv-contrib-python
@@ -34,59 +34,70 @@ pip install numpy opencv-contrib-python
 
 ## Getting Started
 
-1. **Fork and Clone the Repository:**
+1. **Clone the Repository:**
    - Fork this repository to your GitHub account.
    - Clone the repository to your local machine:
-
    ```bash
    git clone https://github.com/your-username/your-repo-name.git
    ```
 
 2. **Update File Directories:**
-   - Open the project files and update the image directories or any other necessary file paths as required for your setup.
+   - Modify file directories in the project if necessary, especially the paths for images or other required resources.
 
-3. **Run the Project:**
-   - Navigate to the project directory and run the main script (replace `main.py` with your entry file if different):
-
+3. **Run the Python Project:**
+   - For pattern detection, run the main Python script:
    ```bash
    python doodle.py
    ```
+   - The program will prompt you to choose an input source:
+     - **I**: Use an image file from the `images` folder.
+     - **C**: Use the live camera feed.
 
 ## How It Works
+
 1. **Image Acquisition:**  
-   The bot captures images or video frames using an attached camera.
-
+   The bot captures images from a live camera feed or a stored image file.
 2. **Preprocessing:**  
-   The acquired images are processed using OpenCV and NumPy for filtering, edge detection, and other enhancements to prepare for pattern identification.
+   Captured images are resized and processed using OpenCV and NumPy to enhance feature detection.
+3. **Marker Detection and Pattern Recognition:**  
+   The OpenCV ArUco module detects markers, whose positions are used to generate movement instructions for drawing patterns.
+4. **Output and Visualization:**  
+   The processed image displays the detected markers along with drawn patterns. Movement instructions are printed to the console.
 
-3. **Pattern Recognition:**  
-   The preprocessed images are compared against a predefined dictionary of patterns. If the marker is detected, the relevant pattern is identified.
+## Arduino Integration
 
-4. **Drawing Patterns:**  
-   Based on the detected pattern and marker position, the bot dynamically draws the corresponding pattern on the ground.
+An integral part of the project is the Arduino sketch, now named **bot.ino**, which controls the doodle bot.
+
+### Hardware Setup:
+- Two DC motors controlled by a motor driver (e.g., L298N).
+- Standard pin configurations are used in **bot.ino**.
+- Preprogrammed directions can be set within **bot.ino** to automate movement, or the bot can receive live Serial commands from the Python script.
+
+### Uploading **bot.ino**:
+1. Open the **bot.ino** file in the Arduino IDE.
+2. Connect your Arduino to your computer.
+3. Select the appropriate board and COM port.
+4. Upload the sketch.
+
+### Python to Arduino Communication:
+The Python script sends movement instructions (e.g., "Move Right", "Move Left") via serial communication to the Arduino. The Arduino sketch reads these commands and executes the corresponding motor movements (optimized for a 90° turn).
 
 ## Customization
-- **Dictionary Updates:**  
-  If the bot does not correctly identify patterns for your chosen image, update the dictionary values in the source code accordingly.
-  
-- **Parameter Tuning:**  
-  Modify OpenCV parameters such as thresholds and filters to optimize performance based on your specific hardware and environmental factors.
+- **Dictionary Updates:** Modify or update the internal pattern dictionary in the code if marker detection needs tuning.
+- **Parameter Tuning:** Adjust thresholds and filters in OpenCV to accommodate different lighting or environmental conditions.
+- **Input Source Options:** Toggle between a stored image and a live camera feed at runtime.
 
 ## Troubleshooting
-- **Library Installation Issues:**  
-  Ensure that all required libraries are installed and updated.
-  
-- **File Directory Problems:**  
-  Verify that the file directories in your code are correctly pointing to the actual locations of your images and other resources.
-  
-- **Environmental Factors:**  
-  Adequate lighting and a stable camera setup are essential for accurate pattern detection.
+- **Library Installation:** Ensure `numpy` and `opencv-contrib-python` are installed properly.
+- **File Path Errors:** Verify that all paths in the code correspond to the correct locations of your images and other resources.
+- **Camera Access Issues:** Ensure that the camera is properly connected and has the necessary permissions.
+- **Arduino Communication:** Confirm that the correct COM port and baud rate (9600) are set in your Python script for serial communication with the Arduino.
 
 ## Contributing
-Contributions are welcome! Here’s how you can contribute:
+Contributions are welcome! To contribute:
 1. Fork the repository.
-2. Create a feature branch (e.g., `git checkout -b feature/YourFeature`).
-3. Make your changes and commit them (e.g., `git commit -am 'Add new feature'`).
-4. Push your branch and open a pull request detailing your changes.
+2. Create a branch (e.g., `feature/YourFeature`).
+3. Commit your changes (e.g., `git commit -am 'Add new feature'`).
+4. Push your branch and open a pull request describing your changes.
 
 Happy coding and happy pattern tracing!
